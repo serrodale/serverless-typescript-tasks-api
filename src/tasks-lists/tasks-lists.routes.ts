@@ -1,10 +1,10 @@
-require('express-namespace');
+require("express-namespace");
 
 import { Application } from "express";
 import { createTasksList, getAllTasksLists } from "./tasks-lists.service";
 
 export const defineRoutes = (app: Application) => {
-  app.namespace('/tasks-lists', () => {
+  app.namespace("/tasks-lists", () => {
     app.post("/", async (req, res) => {
       const { title } = req.body;
 
@@ -13,7 +13,7 @@ export const defineRoutes = (app: Application) => {
       }
 
       res.status(201).json({
-        id: await createTasksList({ title })
+        id: await createTasksList({ title }),
       });
     });
 
