@@ -3,11 +3,11 @@ import { CreateTasksList } from "./tasks-lists.domain";
 
 const TABLE_NAME = "tasks_lists";
 
-export const createTasksList = async ({ name }: CreateTasksList) => {
+export const createTasksList = async ({ title }: CreateTasksList) => {
   const [{ id }] = await getDb(TABLE_NAME)
     .returning("id")
     .insert<{ id: number }[]>({
-      name,
+      title,
       updated_at: new Date(),
     });
   

@@ -6,14 +6,14 @@ import { createTasksList, getAllTasksLists } from "./tasks-lists.service";
 export const defineRoutes = (app: Application) => {
   app.namespace('/tasks-lists', () => {
     app.post("/", async (req, res) => {
-      const name = req.body.name;
+      const { title } = req.body;
 
-      if (!name) {
+      if (!title) {
         return res.status(400);
       }
 
       res.status(201).json({
-        id: await createTasksList({ name })
+        id: await createTasksList({ title })
       });
     });
 

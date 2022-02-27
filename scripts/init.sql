@@ -1,13 +1,12 @@
 CREATE TABLE tasks (
 	id serial PRIMARY KEY,
 	title VARCHAR (255) NOT NULL,
-	status VARCHAR (255) NOT NULL,
 	updated_at TIMESTAMP NOT NULL
 );
 
 CREATE TABLE tasks_lists (
 	id serial PRIMARY KEY,
-	name VARCHAR (255) NOT NULL,
+	title VARCHAR (255) NOT NULL,
 	updated_at TIMESTAMP NOT NULL
 );
 

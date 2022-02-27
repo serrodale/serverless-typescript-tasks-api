@@ -1,3 +1,3 @@
 export interface CreateTasksList {
-  name: string;
+  title: string;
 }
