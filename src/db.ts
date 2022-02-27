@@ -6,13 +6,19 @@ import knex, { Knex } from "knex";
  */
 let db: Knex;
 
-export const getDb = (tableName: string) => {
+export const getDb = () => {
   if (!db) {
     db = knex({
       client: "pg",
-      connection: process.env.DB_CONNECTION_URL,
+      connection: process.env.TS_JEST
+        ? process.env.TESTING_DB_CONNECTION_URL
+        : process.env.DB_CONNECTION_URL,
     });
   }
 
-  return db(tableName);
+  return db;
+};
+
+export const getTable = (tableName: string) => {
+  return getDb()(tableName);
 };
