@@ -10,7 +10,7 @@ CREATE TABLE tasks_lists (
 	updated_at TIMESTAMP NOT NULL
 );
 
-CREATE TABLE tasks__tasks_lists (
+CREATE TABLE tasks_lists__tasks (
   task_id INT REFERENCES tasks(id) ON DELETE CASCADE ON UPDATE CASCADE,
   task_list_id INT REFERENCES tasks_lists(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	assigned_at TIMESTAMP NOT NULL,

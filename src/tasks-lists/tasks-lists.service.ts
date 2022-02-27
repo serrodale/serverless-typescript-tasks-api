@@ -1,4 +1,5 @@
 import { getDb } from "../db";
+
 import {
   CreateTasksList,
   GetTasksList,
@@ -6,12 +7,6 @@ import {
 } from "./tasks-lists.domain";
 
 const TABLE_NAME = "tasks_lists";
-
-interface TasksListRow {
-  id: number;
-  title: string;
-  updated_at: Date;
-}
 
 export const createTasksList = async ({
   title,
@@ -62,3 +57,9 @@ export const updateTasksListById = async (
 export const deleteTasksListById = async (id: number) => {
   await getDb(TABLE_NAME).delete().where({ id });
 };
+
+interface TasksListRow {
+  id: number;
+  title: string;
+  updated_at: Date;
+}
