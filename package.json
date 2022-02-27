@@ -1,11 +1,11 @@
 {
   "name": "tasks-api",
   "scripts": {
-    "test": "jest",
+    "test": "npm run start:local:db && jest",
     "build": "npx tsc --build",
-    "start:local": "npm run start:local:db -- -d && npm run start:local:api",
+    "start:local": "npm run start:local:db && npm run start:local:api",
     "start:local:api": "sls offline start",
-    "start:local:db": "docker-compose up"
+    "start:local:db": "docker-compose up -d"
   },
   "devDependencies": {
     "@hewmen/serverless-plugin-typescript": "^1.1.17",
