@@ -1,4 +1,4 @@
-import { getDb } from "../db";
+import { getTable } from "../db";
 
 import {
   CreateTasksList,
@@ -6,12 +6,12 @@ import {
   UpdateTasksList,
 } from "./tasks-lists.domain";
 
-const TABLE_NAME = "tasks_lists";
+export const TABLE_NAME = "tasks_lists";
 
 export const createTasksList = async ({
   title,
 }: CreateTasksList): Promise<number> => {
-  const [{ id }] = await getDb(TABLE_NAME)
+  const [{ id }] = await getTable(TABLE_NAME)
     .returning("id")
     .insert<{ id: number }[]>({
       title,
@@ -22,7 +22,7 @@ export const createTasksList = async ({
 };
 
 export const getTasksListById = async (id: number): Promise<GetTasksList> => {
-  const [row] = (await getDb(TABLE_NAME)
+  const [row] = (await getTable(TABLE_NAME)
     .select("*")
     .where({ id })) as TasksListRow[];
 
@@ -38,7 +38,7 @@ const mapRowToDomain = (row: TasksListRow) => {
 };
 
 export const getAllTasksLists = async () => {
-  const rows = await getDb(TABLE_NAME).select();
+  const rows = await getTable(TABLE_NAME).select();
   return rows.map(mapRowToDomain);
 };
 
@@ -46,7 +46,7 @@ export const updateTasksListById = async (
   id: number,
   { title }: UpdateTasksList
 ) => {
-  await getDb(TABLE_NAME)
+  await getTable(TABLE_NAME)
     .update({
       title,
       updated_at: new Date(),
@@ -55,7 +55,7 @@ export const updateTasksListById = async (
 };
 
 export const deleteTasksListById = async (id: number) => {
-  await getDb(TABLE_NAME).delete().where({ id });
+  await getTable(TABLE_NAME).delete().where({ id });
 };
 
 interface TasksListRow {
