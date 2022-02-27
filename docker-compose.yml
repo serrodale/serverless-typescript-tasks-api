@@ -9,6 +9,8 @@ services:
       - POSTGRES_DB=tasks_api_dev
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
+    volumes:
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
   db-local-test:
     ports: 
       - '${LOCAL_TEST_DB_PORT:-5433}:5432'
@@ -17,3 +19,5 @@ services:
       - POSTGRES_DB=tasks_api_test
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
+    volumes:
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
