@@ -3,19 +3,24 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc --build",
-    "start:dev": "sls offline start"
+    "start:local": "npm run start:local:db -- -d && npm run start:local:api",
+    "start:local:api": "sls offline start",
+    "start:local:db": "docker-compose up"
   },
   "devDependencies": {
     "@hewmen/serverless-plugin-typescript": "^1.1.17",
     "nodemon": "^2.0.15",
     "serverless-offline": "^8.5.0",
     "serverless-plugin-optimize": "^4.2.1-rc.1",
+    "serverless-plugin-typescript-express": "^1.0.8",
     "typescript": "^3.2.2"
   },
   "dependencies": {
     "@types/express": "^4.16.0",
     "body-parser": "^1.18.3",
+    "dotenv": "^16.0.0",
     "express": "^4.16.4",
+    "pg-promise": "^10.11.1",
     "serverless-http": "^1.8.0"
   }
 }
