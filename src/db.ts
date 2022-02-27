@@ -1,19 +1,18 @@
-import pgPromise, { IDatabase } from 'pg-promise';
+import knex, { Knex } from "knex";
 
 /**
  * It is declared here so that it can be reused by
  * different calls to the same Lambda.
  */
-let db: IDatabase<any>;
+let db: Knex;
 
-const getDb = () => {
+export const getDb = (tableName: string) => {
   if (!db) {
-    db = pgPromise()(process.env.DB_CONNECTION_URL);
+    db = knex({
+      client: "pg",
+      connection: process.env.DB_CONNECTION_URL,
+    });
   }
 
-  return db;
-};
-
-export const query = async (query: string) => {
-  return getDb().query(query);
+  return db(tableName);
 };

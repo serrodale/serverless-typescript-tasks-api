@@ -1,9 +1,8 @@
 import { Application } from "express";
-import { query } from "./db";
+import { defineRoutes as defineTasksRoutes } from "./tasks/tasks.routes";
+import { defineRoutes as defineTasksListsRoutes } from "./tasks-lists/tasks-lists.routes";
 
 export const defineRoutes = (app: Application) => {
-  app.get("/", async (req, res) => {
-    console.log(await query('SELECT * from tables'))
-    res.send("Hello World!");
-  });
+  defineTasksRoutes(app);
+  defineTasksListsRoutes(app);
 };

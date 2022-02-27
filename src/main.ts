@@ -7,7 +7,7 @@ import { defineMiddlewares } from "./middlewares";
 
 export const app = express();
 
-defineRoutes(app);
 defineMiddlewares(app);
+defineRoutes(app);
 
 export const handler = serverless(app);
